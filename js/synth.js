@@ -1,13 +1,15 @@
 Synth = new function() {
-	var self = this;
-	var chars = 'abcdefghijklmnopqrstuvwxyz';
-	var keyCode = {};
+	var self = this,
+		chars = 'abcdefghijklmnopqrstuvwxyz',
+		keyCode = [];
 
+	// Initializer / Constructor
 	this.init = function() {
-		console.log(1);
+		buildKeyCodes();
 	};
 
-	this.buildKeyCodes = function() {
+	// Private
+	var buildKeyCodes = function() {
 		var charCount = chars.length;
 		var startCode = 97;
 
@@ -18,23 +20,22 @@ Synth = new function() {
 		}
 	};
 
+	// Public
 	this.getChar = function(code) {
 		if(chars.indexOf(code)) {
 			return keyCode[code];
 		} 
 
 		return false;
-		
 	};
-};
 
-Synth.buildKeyCodes();
+	this.showChar = function(character) {
+		self.hideChar();
 
-$(document).bind('keypress', function(e){
-	var character = Synth.getChar(e.keyCode);
+		$('body').append('<div class="note">' + character + '</div>');
+	};
 
-	if (character) {
-		var audio = new Audio('assets/' + character + '.WAV');
-		audio.play();		
+	this.hideChar = function(character) {
+		$('.note').fadeOut();
 	}
-});
+};
