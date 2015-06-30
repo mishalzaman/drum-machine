@@ -13,7 +13,7 @@
 		Synth.init();
 
 		$(document).bind('keypress', function(e){
-			if (Synth.isLegalCharacter(e.keyCode)) {
+			if (Synth.isLegalCharacter(e.keyCode) == true) {
 				Synth.setCurrentKey(e.keyCode);
 				Synth.playSound();
 				Synth.showChar();	
