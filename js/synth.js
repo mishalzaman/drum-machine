@@ -1,7 +1,10 @@
 Synth = new function() {
 	var self = this,
 		chars = 'abcdefghijklmnopqrstuvwxyz',
-		keyCode = [];
+		keyCode = [],
+		curKey = 97,
+		KEY_PLUS = 43,
+		KEY_MINUS = 45;
 
 	// Initializer / Constructor
 	this.init = function() {
@@ -21,16 +24,25 @@ Synth = new function() {
 	};
 
 	// Public
-	this.getChar = function(code) {
+	this.setCurrentKey = function(code) {
+		curKey = code;
+	};
+
+	this.playSound = function() {
+		var audio = new Audio('assets/' + keyCode[curKey] + '.WAV');
+		audio.play();	
+	};
+
+	this.showChar = function() {
+		$('.note').fadeOut();
+		$('body').append('<div class="note">' + keyCode[curKey] + '</div>');
+	};
+
+	this.isLegalCharacter = function(code) {
 		if(chars.indexOf(code)) {
-			return keyCode[code];
+			return true;
 		} 
 
 		return false;
-	};
-
-	this.showChar = function(character) {
-		$('.note').fadeOut();
-		$('body').append('<div class="note">' + character + '</div>');
 	};
 };

@@ -13,13 +13,10 @@
 		Synth.init();
 
 		$(document).bind('keypress', function(e){
-			var character = Synth.getChar(e.keyCode);
-
-			if (character) {
-				var audio = new Audio('assets/' + character + '.WAV');
-				audio.play();	
-
-				Synth.showChar(character);	
+			if (Synth.isLegalCharacter(e.keyCode)) {
+				Synth.setCurrentKey(e.keyCode);
+				Synth.playSound();
+				Synth.showChar();	
 			}
 		});
 	});
