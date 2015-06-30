@@ -30,12 +30,7 @@ Synth = new function() {
 	};
 
 	this.showChar = function(character) {
-		self.hideChar();
-
+		$('.note').fadeOut();
 		$('body').append('<div class="note">' + character + '</div>');
 	};
-
-	this.hideChar = function(character) {
-		$('.note').fadeOut();
-	}
 };
