@@ -41,7 +41,7 @@ Synth = new function() {
 	this.isLegalCharacter = function(code) {
 		var character = keyCode[code];
 
-		if(chars.indexOf(character) > 0) {
+		if(chars.indexOf(character) > -1) {
 			return true;
 		} 
 
